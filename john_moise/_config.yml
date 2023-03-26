@@ -5,9 +5,9 @@
 
 #######################################################################################
 # Book settings
-title                       : John Moïse  # The title of the book. Will be placed in the left navbar.
-author                      : John Moïse  # The author of the book
-copyright                   : "2023"  # Copyright year to be placed in the footer
+title: John Moïse  # The title of the book. Will be placed in the left navbar.
+author: John Moïse  # The author of the book
+copyright: "2023"  # Copyright year to be placed in the footer
 only_build_toc_files: true
 
 # Force re-execution of notebooks on each build.

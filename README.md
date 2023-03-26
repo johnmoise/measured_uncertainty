@@ -1,3 +1,3 @@
-# John Moïse
+# Extracurricular
 
-A repository for my current research interests.
+A repository for my hobbies and extracurricular interests.

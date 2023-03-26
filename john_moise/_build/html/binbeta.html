@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Notebooks with MyST Markdown &#8212; John Moïse</title>
+    <title>1.1. Binomial with Beta Prior &#8212; John Moïse</title>
   
   
   
@@ -61,10 +61,14 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'markdown-notebooks';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'binbeta';</script>
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Content with notebooks" href="notebooks.html" />
+    <link rel="next" title="2. Computational Bayesian Methods" href="cbm.html" />
+    <link rel="prev" title="1. Analytic Bayesian Methods" href="abm.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -130,19 +134,13 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="sidebar-primary-item">
   
 
-<a class="navbar-brand logo" href="intro.html">
+<a class="navbar-brand logo" href="welcome.html">
   
   
   
   
-    
-    
-      
-    
-    
-    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
   
+    <p class="title logo__title">John Moïse</p>
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
@@ -150,15 +148,17 @@ const thebe_selector_output = ".output, .cell_output"
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
-                <a class="reference internal" href="intro.html">
-                    Welcome to your Jupyter Book
+                <a class="reference internal" href="welcome.html">
+                    Welcome!
                 </a>
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="markdown.html">Markdown Files</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks.html">Content with notebooks</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Notebooks with MyST Markdown</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="abm.html">1. Analytic Bayesian Methods</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">1.1. Binomial with Beta Prior</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cbm.html">2. Computational Bayesian Methods</a></li>
 </ul>
 
     </div>
@@ -202,50 +202,18 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="article-header-buttons">
 
 
-
-
-
-<div class="dropdown dropdown-source-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
-    <i class="fab fa-github"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="https://github.com/johnmoise/John Moïse" target="_blank"
-   class="btn btn-sm btn-source-repository-button dropdown-item"
-   title="Source repository"
-   data-bs-placement="left" data-bs-toggle="tooltip"
+<a href="https://github.com/johnmoise/research/edit/gh-pages/binbeta.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button"
+   title="Suggest edit"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
-  <i class="fab fa-github"></i>
+  <i class="fas fa-pencil-alt"></i>
   </span>
-<span class="btn__text-container">Repository</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li><a href="https://github.com/johnmoise/John Moïse/issues/new?title=Issue%20on%20page%20%2Fmarkdown-notebooks.html&body=Your%20issue%20content%20here." target="_blank"
-   class="btn btn-sm btn-source-issues-button dropdown-item"
-   title="Open an issue"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
 
-<span class="btn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="btn__text-container">Open issue</span>
 </a>
-</li>
-      
-  </ul>
-</div>
 
 
 
@@ -260,7 +228,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="_sources/markdown-notebooks.md" target="_blank"
+      <li><a href="_sources/binbeta.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -342,7 +310,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Notebooks with MyST Markdown</h1>
+    <h1>Binomial with Beta Prior</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -352,9 +320,9 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#an-example-cell">An example cell</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-notebook-with-myst-markdown">Create a notebook with MyST Markdown</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quickly-add-yaml-metadata-for-myst-notebooks">Quickly add YAML metadata for MyST Notebooks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motivating-example">1.1.1. Motivating Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parameterizing-the-situation">1.1.2. Parameterizing the Situation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intuition-of-the-beta-parameters">1.1.3. Intuition of the Beta parameters</a></li>
 </ul>
             </nav>
         </div>
@@ -366,50 +334,72 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="notebooks-with-myst-markdown">
-<h1>Notebooks with MyST Markdown<a class="headerlink" href="#notebooks-with-myst-markdown" title="Permalink to this heading">#</a></h1>
-<p>Jupyter Book also lets you write text-based notebooks using MyST Markdown.
-See <a class="reference external" href="https://jupyterbook.org/file-types/myst-notebooks.html">the Notebooks with MyST Markdown documentation</a> for more detailed instructions.
-This page shows off a notebook written in MyST Markdown.</p>
-<section id="an-example-cell">
-<h2>An example cell<a class="headerlink" href="#an-example-cell" title="Permalink to this heading">#</a></h2>
-<p>With MyST Markdown, you can define code cells with a directive like so:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
-</pre></div>
-</div>
-</div>
-</div>
-<p>When your book is built, the contents of any <code class="docutils literal notranslate"><span class="pre">{code-cell}</span></code> blocks will be
-executed with your default Jupyter kernel, and their outputs will be displayed
-in-line with the rest of your content.</p>
-<div class="admonition seealso">
-<p class="admonition-title">See also</p>
-<p>Jupyter Book uses <a class="reference external" href="https://jupytext.readthedocs.io/en/latest/">Jupytext</a> to convert text-based files to notebooks, and can support <a class="reference external" href="https://jupyterbook.org/file-types/jupytext.html">many other text-based notebook files</a>.</p>
-</div>
+  <section class="tex2jax_ignore mathjax_ignore" id="binomial-with-beta-prior">
+<h1><span class="section-number">1.1. </span>Binomial with Beta Prior<a class="headerlink" href="#binomial-with-beta-prior" title="Permalink to this heading">#</a></h1>
+<section id="motivating-example">
+<h2><span class="section-number">1.1.1. </span>Motivating Example<a class="headerlink" href="#motivating-example" title="Permalink to this heading">#</a></h2>
+<p>Before we dive into the mathematics, let us consider a motivation example:</p>
+<hr class="docutils" />
+<p>One day while walking downtown, you stop briefly to watch a street-performer - a
+magician - who is doing various sleight-of-hand tricks, much to the amazement of
+the crowd. As a part of his next trick, he shows the crowd a standard-appearing
+coin with both head and tails sides. Somewhat abruptly the magician singles you
+out from the crowd and offers you a deal: if he flips the coin 10 times and it
+lands on heads 7 or less times, he will pay you <span class="math notranslate nohighlight">\(100, but if it lands on heads 8
+or more times, you owe him \)</span>100. The question: do you take the bet?</p>
+<hr class="docutils" />
+<p>Naturally this proposition sounds like a wonderful deal (with an expected value
+of $89) if the coin is fair; however, how do you know whether the coin is fair?
+Better yet, how would you quantify your uncertainty about the fairness of the
+coin? Suppose, in this hypothetical (although unlikely in reality) that the
+magician allows you to flip the coin a few times prior to taking the bet. How
+could you use the data that you collect to inform your decision by updating your
+uncertainty?</p>
 </section>
-<section id="create-a-notebook-with-myst-markdown">
-<h2>Create a notebook with MyST Markdown<a class="headerlink" href="#create-a-notebook-with-myst-markdown" title="Permalink to this heading">#</a></h2>
-<p>MyST Markdown notebooks are defined by two things:</p>
-<ol class="arabic simple">
-<li><p>YAML metadata that is needed to understand if / how it should convert text files to notebooks (including information about the kernel needed).
-See the YAML at the top of this page for example.</p></li>
-<li><p>The presence of <code class="docutils literal notranslate"><span class="pre">{code-cell}</span></code> directives, which will be executed with your book.</p></li>
-</ol>
-<p>That’s all that is needed to get started!</p>
+<section id="parameterizing-the-situation">
+<h2><span class="section-number">1.1.2. </span>Parameterizing the Situation<a class="headerlink" href="#parameterizing-the-situation" title="Permalink to this heading">#</a></h2>
+<p>To begin, we model the coin as a random variable which describes the number of
+successes \(s\) and failures \(f\) in \(n\) Bernoulli trials with some unknown probability
+\(\theta\) of success (“heads”), and a complementary probability
+\((1-\theta)\) of failure (“tails”).</p>
+<p>The random variable will follow the binomial distribution with a probability
+mass function of \[ p(s,f \mid \theta)={n\choose s}\theta^{s}(1-\theta)^{f}\]</p>
+<p>The conjugate prior of the binomial distribtion is the beta distribution :</p>
+<p>\[ p(\theta)=\frac{\theta^{\alpha-1}(1-\theta)^{\beta-1}}{B(\alpha,\beta)}\]</p>
+<p>where parameters \((\alpha,\beta)\) encode existing belief about the
+distribution of \(\theta\) and \(B(\alpha,\beta)\) serves as a normalising
+constant.</p>
+<p>Plugging the above equations into Bayes’ theorem, simplifying, and
+re-normalizing,</p>
+<p>\[ P(\theta \mid s, f)= \frac{P(s,f \mid \theta)P(\theta)}{\int P(s,f \mid \theta)P(\theta)d\theta} = \frac{\theta^{\alpha+s-1}(1-\theta)^{\beta+f-1}}{B(\alpha+s,\beta+f)}\]</p>
+<p>which is a Beta distribution with parameters \((\alpha+s,\beta+f)\).</p>
 </section>
-<section id="quickly-add-yaml-metadata-for-myst-notebooks">
-<h2>Quickly add YAML metadata for MyST Notebooks<a class="headerlink" href="#quickly-add-yaml-metadata-for-myst-notebooks" title="Permalink to this heading">#</a></h2>
-<p>If you have a markdown file and you’d like to quickly add YAML metadata to it, so that Jupyter Book will treat it as a MyST Markdown Notebook, run the following command:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">jupyter</span><span class="o">-</span><span class="n">book</span> <span class="n">myst</span> <span class="n">init</span> <span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">markdownfile</span><span class="o">.</span><span class="n">md</span>
-</pre></div>
-</div>
+<section id="intuition-of-the-beta-parameters">
+<h2><span class="section-number">1.1.3. </span>Intuition of the Beta parameters<a class="headerlink" href="#intuition-of-the-beta-parameters" title="Permalink to this heading">#</a></h2>
+<p>The \(\alpha\) and \(\beta\) parameters of the Beta prior can seem somewhat
+cryptic at first, until one recognizes that they represent pseudo-observations.
+A Beta prior with parameters \((1,1)\) is uninformative as it represents a
+coin where one has only witnessed a single result for both heads and tails.
+Meanwhile a Beta prior of \(85,15\) can be understood as a coin which we have
+flipped 100 times, with 85 heads and 15 tails. Thus in the process of updating
+our Beta prior using Bayes’ theorem, it makes sense that the resulting posterior
+distribution would have parameters \((\alpha+s,\beta+f)\).</p>
+<p>##Application
+Revisting the motivating example, suppose you test the coin by flipping it 50
+times and it lands on heads exactly 42 times and tails 8 times. Assuming an
+uninformative likelihood of \(Beta(1,1)\), the posterior would have the form
+\(Beta(1+42,1+8)=Beta(43,9)\).</p>
+<p>The posterior predictive distribution is of the beta binomial family and its
+probability mass function takes the form
+\[ p(s)={n \choose x}\frac{B(\alpha+s,\beta+f)}{B(\alpha,\beta)}\]</p>
+<p>Summing over the values that would net gain in the game,</p>
+<p>\[ \sum_{s=0}^{7}p(s)=0.253\]</p>
+<p>Meanwhile summing over the values that would net loss in the game,</p>
+<p>\[ \sum_{s=8}^{10}p(s)=0.747\]</p>
+<p>We can thus calculate our expected return in playing the game:</p>
+<p>\[ E(<span class="math notranslate nohighlight">\()=(0.253\cdot 100)-(0.747\cdot 100)=-\)</span>49.40\]</p>
+<p>That is, we would expect to lose an average of $49.40 every time we played the
+game.</p>
 </section>
 </section>
 
@@ -442,13 +432,22 @@ See the YAML at the top of this page for example.</p></li>
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="notebooks.html"
+       href="abm.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Content with notebooks</p>
+        <p class="prev-next-title"><span class="section-number">1. </span>Analytic Bayesian Methods</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="cbm.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Computational Bayesian Methods</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -465,9 +464,9 @@ See the YAML at the top of this page for example.</p></li>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#an-example-cell">An example cell</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-notebook-with-myst-markdown">Create a notebook with MyST Markdown</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quickly-add-yaml-metadata-for-myst-notebooks">Quickly add YAML metadata for MyST Notebooks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motivating-example">1.1.1. Motivating Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parameterizing-the-situation">1.1.2. Parameterizing the Situation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intuition-of-the-beta-parameters">1.1.3. Intuition of the Beta parameters</a></li>
 </ul>
   </nav></div>
 
