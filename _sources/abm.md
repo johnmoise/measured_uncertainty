@@ -10,5 +10,3 @@ likelihood.
 
 The following pages will delve further into these conjugate priors and show
 through worked examples how to apply them in appropriate scenarios.
-
-$$\frac{1}{2}$$
