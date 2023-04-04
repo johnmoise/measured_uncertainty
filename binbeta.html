@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>1.1. Binomial with Beta Prior &#8212; Extracurricular</title>
+    <title>2.2. Binomial with Beta Prior &#8212; Extracurricular</title>
   
   
   
@@ -35,6 +35,7 @@
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
     <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -67,8 +68,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="1.2. Poisson with Gamma Prior" href="poigam.html" />
-    <link rel="prev" title="1. Analytic Bayesian Methods" href="abm.html" />
+    <link rel="next" title="2.3. Poisson with Gamma Prior" href="poigam.html" />
+    <link rel="prev" title="2. Analytic Bayesian Methods" href="abm.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -154,12 +155,13 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="abm.html">1. Analytic Bayesian Methods</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">1.1. Binomial with Beta Prior</a></li>
-<li class="toctree-l2"><a class="reference internal" href="poigam.html">1.2. Poisson with Gamma Prior</a></li>
+<li class="toctree-l1"><a class="reference internal" href="foundations.html">1. Foundations of Bayesian Statistics</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="abm.html">2. Analytic Bayesian Methods</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">2.2. Binomial with Beta Prior</a></li>
+<li class="toctree-l2"><a class="reference internal" href="poigam.html">2.3. Poisson with Gamma Prior</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="cbm.html">2. Computational Bayesian Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cbm.html">3. Computational Bayesian Methods</a></li>
 </ul>
 
     </div>
@@ -203,7 +205,7 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="article-header-buttons">
 
 
-<a href="https://github.com/johnmoise/research/edit/gh-pages/binbeta.md" target="_blank"
+<a href="https://github.com/johnmoise/research/edit/gh-pages/binbeta.ipynb" target="_blank"
    class="btn btn-sm btn-source-edit-button"
    title="Suggest edit"
    data-bs-placement="bottom" data-bs-toggle="tooltip"
@@ -229,7 +231,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="_sources/binbeta.md" target="_blank"
+      <li><a href="_sources/binbeta.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -239,7 +241,7 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -321,9 +323,12 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motivating-example">1.1.1. Motivating Example</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parameterizing-the-situation">1.1.2. Parameterizing the Situation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intuition-of-the-beta-parameters">1.1.3. Intuition of the Beta parameters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motivating-example">2.2.1. Motivating Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#expected-value-of-a-fair-coin">2.2.2. Expected Value of A Fair Coin</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parameterizing-a-possibly-unfair-coin">2.2.3. Parameterizing a Possibly Unfair Coin</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intuition-of-the-beta-parameters">2.2.4. Intuition of the Beta Parameters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimating-the-bias-of-a-coin">2.2.5. Estimating the Bias of a Coin</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-the-expected-value-for-a-biased-coin">2.2.6. Calculating the Expected Value for a Biased Coin</a></li>
 </ul>
             </nav>
         </div>
@@ -336,71 +341,227 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="binomial-with-beta-prior">
-<h1><span class="section-number">1.1. </span>Binomial with Beta Prior<a class="headerlink" href="#binomial-with-beta-prior" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">2.2. </span>Binomial with Beta Prior<a class="headerlink" href="#binomial-with-beta-prior" title="Permalink to this heading">#</a></h1>
 <section id="motivating-example">
-<h2><span class="section-number">1.1.1. </span>Motivating Example<a class="headerlink" href="#motivating-example" title="Permalink to this heading">#</a></h2>
-<p>Before we dive into the mathematics, let us consider a motivation example:</p>
+<h2><span class="section-number">2.2.1. </span>Motivating Example<a class="headerlink" href="#motivating-example" title="Permalink to this heading">#</a></h2>
+<p>Before we dive into the mathematics, let us consider a motivating example:</p>
 <hr class="docutils" />
-<p>One day while walking downtown, you stop briefly to watch a street-performer - a
-magician - who is doing various sleight-of-hand tricks, much to the amazement of
-the crowd. As a part of his next trick, he shows the crowd a standard-appearing
-coin with both head and tails sides. Somewhat abruptly the magician singles you
-out from the crowd and offers you a deal: if he flips the coin 10 times and it
-lands on heads 7 or less times, he will pay you <span class="math notranslate nohighlight">\(100, but if it lands on heads 8
-or more times, you owe him \)</span>100. The question: do you take the bet?</p>
-<hr class="docutils" />
-<p>Naturally this proposition sounds like a wonderful deal (with an expected value
-of $89) if the coin is fair; however, how do you know whether the coin is fair?
-Better yet, how would you quantify your uncertainty about the fairness of the
-coin? Suppose, in this hypothetical (although unlikely in reality) that the
-magician allows you to flip the coin a few times prior to taking the bet. How
-could you use the data that you collect to inform your decision by updating your
-uncertainty?</p>
+<p>One day while walking downtown, you stop briefly to watch a street-performer - a magician - who is doing various sleight-of-hand tricks. As a part of his next trick, he shows the crowd a standard-appearing coin with both head and tails sides. Somewhat abruptly the magician singles you out from the crowd and offers you a deal: if he flips the coin 10 times and it lands on heads 7 or less times, he will pay you 100 dollars, but if it lands on heads 8 or more times, you owe him 100 dollars. The question: do you take the bet?</p>
 </section>
-<section id="parameterizing-the-situation">
-<h2><span class="section-number">1.1.2. </span>Parameterizing the Situation<a class="headerlink" href="#parameterizing-the-situation" title="Permalink to this heading">#</a></h2>
-<p>To begin, we model the coin as a random variable which describes the number of
-successes \(s\) and failures \(f\) in \(n\) Bernoulli trials with some unknown probability
-\(\theta\) of success (“heads”), and a complementary probability
-\((1-\theta)\) of failure (“tails”).</p>
-<p>The random variable will follow the binomial distribution with a probability
-mass function of \[ p(s,f \mid \theta)={n\choose s}\theta^{s}(1-\theta)^{f}\]</p>
-<p>The conjugate prior of the binomial distribtion is the beta distribution :</p>
-<p>\[ p(\theta)=\frac{\theta^{\alpha-1}(1-\theta)^{\beta-1}}{B(\alpha,\beta)}\]</p>
-<p>where parameters \((\alpha,\beta)\) encode existing belief about the
-distribution of \(\theta\) and \(B(\alpha,\beta)\) serves as a normalising
-constant.</p>
-<p>Plugging the above equations into Bayes’ theorem, simplifying, and
-re-normalizing,</p>
-<p>\[ P(\theta \mid s, f)= \frac{P(s,f \mid \theta)P(\theta)}{\int P(s,f \mid \theta)P(\theta)d\theta} = \frac{\theta^{\alpha+s-1}(1-\theta)^{\beta+f-1}}{B(\alpha+s,\beta+f)}\]</p>
-<p>which is a Beta distribution with parameters \((\alpha+s,\beta+f)\).</p>
+<hr class="docutils" />
+<section id="expected-value-of-a-fair-coin">
+<h2><span class="section-number">2.2.2. </span>Expected Value of A Fair Coin<a class="headerlink" href="#expected-value-of-a-fair-coin" title="Permalink to this heading">#</a></h2>
+<p>Let us first calculate the expected value of the above proposition assuming the coin is fair.</p>
+<p>To begin we model the coin as a random variable over <span class="math notranslate nohighlight">\(n\)</span> Bernoulli trials with <span class="math notranslate nohighlight">\(x\)</span> number of heads and <span class="math notranslate nohighlight">\(n-x\)</span> tails according to some unknown probability <span class="math notranslate nohighlight">\(\theta\)</span> of heads and a complementary probability <span class="math notranslate nohighlight">\((1-\theta)\)</span> of tails.</p>
+<p>The random variable will follow the binomial distribution with a probability mass function (pmf) of $<span class="math notranslate nohighlight">\(p(n,x|\theta)={n \choose x}\theta^{x}(1-\theta)^{n-x}\)</span>$</p>
+<p>We begin by graphing the probability of each combination of heads and tails and coloring it by its associated betting outcome, in addition to calculate the expected value of the bet.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">binom</span>
+
+<span class="c1"># set parameter values</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1"># number of flips</span>
+<span class="n">theta</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="c1"># probability of heads</span>
+
+<span class="c1">#define possible outcomes of heads</span>
+<span class="n">x_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1">#calculate pmf values</span>
+<span class="n">dist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">binom</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">theta</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">x_values</span><span class="p">])</span>
+
+<span class="c1">#create color masks</span>
+<span class="n">win</span> <span class="o">=</span> <span class="n">x_values</span><span class="o">&lt;=</span><span class="mi">7</span>
+<span class="n">lose</span> <span class="o">=</span> <span class="n">x_values</span><span class="o">&gt;</span><span class="mi">7</span>
+
+<span class="c1">#plot the distribution</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x_values</span><span class="p">[</span><span class="n">win</span><span class="p">],</span><span class="n">dist</span><span class="p">[</span><span class="n">win</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Win $100&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x_values</span><span class="p">[</span><span class="n">lose</span><span class="p">],</span><span class="n">dist</span><span class="p">[</span><span class="n">lose</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Lose $100&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Probability&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="s1">&#39;15&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Number of Heads&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="s1">&#39;15&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># calculate expected value</span>
+<span class="n">expected_value</span> <span class="o">=</span> <span class="mi">100</span><span class="o">*</span><span class="nb">sum</span><span class="p">(</span><span class="n">dist</span><span class="p">[</span><span class="n">win</span><span class="p">])</span> <span class="o">-</span> <span class="mi">100</span><span class="o">*</span><span class="nb">sum</span><span class="p">(</span><span class="n">dist</span><span class="p">[</span><span class="n">lose</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Expected Value:&quot;</span><span class="p">,</span><span class="sa">f</span><span class="s2">&quot;$</span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">expected_value</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/db1cfead8a185a28d861efb5dc9dec528984a41355371428c63e0df86249b6ab.png" src="_images/db1cfead8a185a28d861efb5dc9dec528984a41355371428c63e0df86249b6ab.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Expected Value: $89.06
+</pre></div>
+</div>
+</div>
+</div>
+<p>Given the above calculation, the proposition sounds like a wonderful deal with an expected value of $89.06 in your favor if the coin is fair; however, how do you know whether the coin is fair? Better yet, how would you quantify your uncertainty about the fairness of the coin? Suppose, in this hypothetical (although unlikely in reality) that the magician allows you to flip the coin a few times prior to taking the bet. How could you use the data that you collect to inform your decision by updating your uncertainty?</p>
+</section>
+<section id="parameterizing-a-possibly-unfair-coin">
+<h2><span class="section-number">2.2.3. </span>Parameterizing a Possibly Unfair Coin<a class="headerlink" href="#parameterizing-a-possibly-unfair-coin" title="Permalink to this heading">#</a></h2>
+<p>As before, we model the coin as a random variable over <span class="math notranslate nohighlight">\(n\)</span> Bernoulli trials with <span class="math notranslate nohighlight">\(x\)</span> number of heads and <span class="math notranslate nohighlight">\(n-x\)</span> number of tails according to some unknown probability <span class="math notranslate nohighlight">\(\theta\)</span> of heads and a complementary probability <span class="math notranslate nohighlight">\((1-\theta)\)</span> of tails.</p>
+<p>The random variable will follow the binomial distribution with a probability mass function of</p>
+<div class="math notranslate nohighlight">
+\[p(n,x|\theta)={n \choose x}\theta^{x}(1-\theta)^{n-x}\]</div>
+<p>The conjugate prior <span class="math notranslate nohighlight">\(p(\theta)\)</span> of the binomial distribution is the beta distribution.</p>
+<div class="math notranslate nohighlight">
+\[p(\theta)=\frac{\theta^{\alpha-1}(1-\theta)^{\beta-1}}{B(\alpha,\beta)}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span> are hyperparameters encoding prior belief or information and <span class="math notranslate nohighlight">\(B(\alpha,\beta)\)</span> represents the Beta function serving as a normalizing constant.</p>
+<p>Plugging the above equations into Bayes’ theorem, simplifying, and renormalizing,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+p(\theta|n,x) &amp; = \frac{p(n,x|\theta)p(\theta)}{\int p(n,x|\theta)p(\theta)d\theta} \\
+&amp; = \frac{{n \choose x}\theta^{x+\alpha-1}(1-\theta)^{n-x+\beta-1}/B(\alpha,\beta)}{\int_{0}^{1} {n \choose x}\theta^{x+\alpha-1}(1-\theta)^{n-x+\beta-1}/B(\alpha,\beta)d\theta} \\
+&amp; = \frac{\theta^{x+\alpha-1}(1-\theta)^{n-x+\beta-1}}{B(x+\alpha,n-x+\beta)} \\
+\end{align}
+\end{split}\]</div>
+<p>which is a Beta distribution with parameters <span class="math notranslate nohighlight">\((x+\alpha,n-x+\beta)\)</span>. The posterior distribution can then be used as a prior for further observations with the hyperparameters consolidating the information with each new addition.</p>
 </section>
 <section id="intuition-of-the-beta-parameters">
-<h2><span class="section-number">1.1.3. </span>Intuition of the Beta parameters<a class="headerlink" href="#intuition-of-the-beta-parameters" title="Permalink to this heading">#</a></h2>
-<p>The \(\alpha\) and \(\beta\) parameters of the Beta prior can seem somewhat
-cryptic at first, until one recognizes that they represent pseudo-observations.
-A Beta prior with parameters \((1,1)\) is uninformative as it represents a
-coin where one has only witnessed a single result for both heads and tails.
-Meanwhile a Beta prior of \(85,15\) can be understood as a coin which we have
-flipped 100 times, with 85 heads and 15 tails. Thus in the process of updating
-our Beta prior using Bayes’ theorem, it makes sense that the resulting posterior
-distribution would have parameters \((\alpha+s,\beta+f)\).</p>
-<p>##Application
-Revisting the motivating example, suppose you test the coin by flipping it 50
-times and it lands on heads exactly 42 times and tails 8 times. Assuming an
-uninformative likelihood of \(Beta(1,1)\), the posterior would have the form
-\(Beta(1+42,1+8)=Beta(43,9)\).</p>
-<p>The posterior predictive distribution is of the beta binomial family and its
-probability mass function takes the form
-\[ p(s)={n \choose x}\frac{B(\alpha+s,\beta+f)}{B(\alpha,\beta)}\]</p>
-<p>Summing over the values that would net gain in the game,</p>
-<p>\[ \sum_{s=0}^{7}p(s)=0.253\]</p>
-<p>Meanwhile summing over the values that would net loss in the game,</p>
-<p>\[ \sum_{s=8}^{10}p(s)=0.747\]</p>
-<p>We can thus calculate our expected return in playing the game:</p>
-<p>\[ E(<span class="math notranslate nohighlight">\()=(0.253\cdot 100)-(0.747\cdot 100)=-\)</span>49.40\]</p>
-<p>That is, we would expect to lose an average of $49.40 every time we played the
-game.</p>
+<h2><span class="section-number">2.2.4. </span>Intuition of the Beta Parameters<a class="headerlink" href="#intuition-of-the-beta-parameters" title="Permalink to this heading">#</a></h2>
+<p>The <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span> parameters of the Beta prior can seem somewhat cryptic at first, until one recognizes that they represent pseudo-observations. A Beta prior with parameters <span class="math notranslate nohighlight">\((1,1)\)</span> is uninformative as it represents a coin where one has witnessed no coin flips. Meanwhile a Beta prior of <span class="math notranslate nohighlight">\((86,16)\)</span> can be understood as a coin which we have flipped 100 times, with 85 heads and 15 tails. Thus in the process of updating our Beta prior using Bayes’ theorem, it makes sense that the resulting posterior distribution would have parameters <span class="math notranslate nohighlight">\((x+\alpha,n-x+\beta)\)</span>.</p>
+</section>
+<section id="estimating-the-bias-of-a-coin">
+<h2><span class="section-number">2.2.5. </span>Estimating the Bias of a Coin<a class="headerlink" href="#estimating-the-bias-of-a-coin" title="Permalink to this heading">#</a></h2>
+<p>Revisiting the motivating example, suppose you test the coin by flipping it 50 times and it lands on heads exactly 42 times and tails 8 times. Assuming an uninformative prior of <span class="math notranslate nohighlight">\(Beta(1,1)\)</span>, the posterior would have the form of <span class="math notranslate nohighlight">\(Beta(1+42,1+8)=Beta(43,9)\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">beta</span>
+
+<span class="c1"># set parameter values</span>
+<span class="n">prior_alpha</span><span class="p">,</span> <span class="n">prior_beta</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span><span class="mi">1</span>
+<span class="n">posterior_alpha</span><span class="p">,</span> <span class="n">posterior_beta</span> <span class="o">=</span> <span class="mi">43</span><span class="p">,</span> <span class="mi">9</span>
+
+<span class="c1"># generate plot values</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="c1"># generate distributions</span>
+<span class="n">prior_dist</span> <span class="o">=</span> <span class="n">beta</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">prior_alpha</span><span class="p">,</span><span class="n">prior_beta</span><span class="p">)</span>
+<span class="n">posterior_dist</span> <span class="o">=</span> <span class="n">beta</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">posterior_alpha</span><span class="p">,</span><span class="n">posterior_beta</span><span class="p">)</span>
+
+<span class="c1"># plot the prior and posterior distributions</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">prior_dist</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Prior: Beta(1,1)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">posterior_dist</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Posterior: Beta(43,9)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;θ&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="s1">&#39;15&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Probability&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="s1">&#39;15&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/7a603e163cdfa4a7a04e351aaab1d3b708b4f57f4ec0f55aa3cb4f5a53f85ce2.png" src="_images/7a603e163cdfa4a7a04e351aaab1d3b708b4f57f4ec0f55aa3cb4f5a53f85ce2.png" />
+</div>
+</div>
+<p>From a single glance, we can see that the probability of θ being 0.5 (i.e. the coin being fair) is vanishingly small, while most of the consolidation is occurring somewhere around 0.83.</p>
+<p>We can more specifically characterize the posterior distribution by calculating the maximum a posteriori (MAP) which is the global maximum of the posterior distribution. The MAP can provide a good point estimate for the value of theta in distributions that are unimodal and well-behaved.</p>
+<p>Further, we can calculate a credible interval for the posterior distribution. A credible interval is the interval over which an unobserved parameter (such as θ) falls with a particular probability. Although there are many ways to define credible intervals for different purposes, for this example we will use a 95% highest density interval, which is defined as the smallest interval on the posterior density which integrates to a given confidence level.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># calculate maximum a posteriori</span>
+<span class="n">p_max</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">posterior_dist</span><span class="p">)</span>
+<span class="n">theta_max</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">posterior_dist</span><span class="p">)]</span>
+
+<span class="c1">#define function to calculate highest density credible interval</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">optimize</span>
+
+<span class="k">def</span> <span class="nf">hdi</span><span class="p">(</span><span class="n">distribution</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mf">0.95</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get the highest density interval for the distribution, e.g. for a Bayesian posterior, the highest posterior density interval (HPD/HDI)</span>
+<span class="sd">    Credit: Ying Tong Li (https://yingtongli.me/blog/2022/10/06/scipy-hdi.html) </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># For a given lower limit, we can compute the corresponding 95% interval</span>
+    <span class="k">def</span> <span class="nf">interval_width</span><span class="p">(</span><span class="n">lower</span><span class="p">):</span>
+        <span class="n">upper</span> <span class="o">=</span> <span class="n">distribution</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="n">distribution</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">lower</span><span class="p">)</span> <span class="o">+</span> <span class="n">level</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">upper</span> <span class="o">-</span> <span class="n">lower</span>
+
+    <span class="c1"># Find such interval which has the smallest width</span>
+    <span class="c1"># Use equal-tailed interval as initial guess</span>
+    <span class="n">initial_guess</span> <span class="o">=</span> <span class="n">distribution</span><span class="o">.</span><span class="n">ppf</span><span class="p">((</span><span class="mi">1</span><span class="o">-</span><span class="n">level</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">optimize_result</span> <span class="o">=</span> <span class="n">optimize</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">interval_width</span><span class="p">,</span> <span class="n">initial_guess</span><span class="p">,</span><span class="n">method</span> <span class="o">=</span> <span class="s1">&#39;Nelder-Mead&#39;</span><span class="p">)</span>
+
+    <span class="n">lower_limit</span> <span class="o">=</span> <span class="n">optimize_result</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">width</span> <span class="o">=</span> <span class="n">optimize_result</span><span class="o">.</span><span class="n">fun</span>
+    <span class="n">upper_limit</span> <span class="o">=</span> <span class="n">lower_limit</span> <span class="o">+</span> <span class="n">width</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="n">lower_limit</span><span class="p">,</span> <span class="n">upper_limit</span><span class="p">)</span>
+
+<span class="n">distribution</span> <span class="o">=</span> <span class="n">beta</span><span class="p">(</span><span class="n">posterior_alpha</span><span class="p">,</span><span class="n">posterior_beta</span><span class="p">)</span>
+<span class="n">lower_bound</span><span class="p">,</span> <span class="n">upper_bound</span> <span class="o">=</span> <span class="n">hdi</span><span class="p">(</span><span class="n">distribution</span><span class="p">,</span><span class="mf">0.95</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">posterior_dist</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Posterior: Beta(43,9)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">theta_max</span><span class="p">,</span><span class="n">ymin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">ymax</span><span class="o">=</span><span class="n">p_max</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;purple&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;MAP: θ=</span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">theta_max</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y1</span><span class="o">=</span><span class="n">posterior_dist</span><span class="p">,</span><span class="n">where</span><span class="o">=</span><span class="p">(</span><span class="n">lower_bound</span><span class="o">&lt;</span><span class="n">x</span><span class="p">)</span><span class="o">&amp;</span><span class="p">(</span><span class="n">x</span><span class="o">&lt;</span><span class="n">upper_bound</span><span class="p">),</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;95% HDI: [</span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">lower_bound</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">upper_bound</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/24ebdac360cc5a3d66454913497e09db5378b3c9aaa974485f6c65d349958f4c.png" src="_images/24ebdac360cc5a3d66454913497e09db5378b3c9aaa974485f6c65d349958f4c.png" />
+</div>
+</div>
+</section>
+<section id="calculating-the-expected-value-for-a-biased-coin">
+<h2><span class="section-number">2.2.6. </span>Calculating the Expected Value for a Biased Coin<a class="headerlink" href="#calculating-the-expected-value-for-a-biased-coin" title="Permalink to this heading">#</a></h2>
+<p>The expected value of the biased coin can be calculated using the posterior predictive distribution.</p>
+<p>In Bayesian statistics, the posterior predictive distribution (PPD) is the distribution of possible unobserved values <span class="math notranslate nohighlight">\(\tilde{x}\)</span> conditioned on the set of previously observed values <span class="math notranslate nohighlight">\(\mathbb{X}=\{x_1,...,x_{|\mathbb{X}|}\}\)</span> with given size <span class="math notranslate nohighlight">\(|\mathbb{X}|\)</span> which are drawn from a distribution that depends on parameter <span class="math notranslate nohighlight">\(\theta\in\Theta\)</span> where <span class="math notranslate nohighlight">\(\Theta\)</span> is the complete parameter space.</p>
+<p>The PPD is calculated by the marginalization of the distribution of <span class="math notranslate nohighlight">\(\tilde{x}\)</span> given <span class="math notranslate nohighlight">\(\theta\)</span> over the posterior distribution of <span class="math notranslate nohighlight">\(\theta\)</span> given <span class="math notranslate nohighlight">\(\textbf{X}\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[PPD\stackrel{\text{def}}{=} p(\tilde{x}|\textbf{X})=\int_{\theta}p(\tilde{x}|\theta)p(\theta|\textbf{X})d\theta\]</div>
+<p>As we saw in the case of the unbiased coin, <span class="math notranslate nohighlight">\(p(\tilde{x}|\theta)\)</span> follows a binomial distribution. Additionally, as we learned above, the conjugate posterior <span class="math notranslate nohighlight">\(p(\theta|\textbf{X})\)</span> of the binomial distribution is the beta distribution. Thus,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+p(\tilde{x}|\textbf{X}) &amp; = \int_{\theta} p(\tilde{x}|\theta)p(\theta|\textbf{X})d\theta \\
+&amp; = \int_0^1Bin(\tilde{x}|n,\theta)Beta(\theta|\alpha,\beta)d\theta \\
+&amp; = {n \choose x}\frac{1}{B(\alpha,\beta)}\int_0^1\theta^{x+\alpha-1}(1-\theta)^{n-x+\beta-1}d\theta \\
+&amp; = {n \choose x}\frac{B(x+\alpha,n-x+\beta)}{B(\alpha,\beta)}
+\end{align}
+\end{split}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">betabinom</span>
+
+<span class="c1"># set parameter values</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1"># number of flips</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="mi">43</span> <span class="c1"># number of observed successes + 1</span>
+<span class="n">beta</span> <span class="o">=</span> <span class="mi">9</span> <span class="c1"># number of observed failures + 1</span>
+
+<span class="c1">#define possible outcomes of success/heads</span>
+<span class="n">x_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1">#calculate pmf values</span>
+<span class="n">dist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">betabinom</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">alpha</span><span class="p">,</span><span class="n">beta</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">x_values</span><span class="p">])</span>
+
+<span class="c1">#create color masks</span>
+<span class="n">win</span> <span class="o">=</span> <span class="n">x_values</span><span class="o">&lt;=</span><span class="mi">7</span>
+<span class="n">lose</span> <span class="o">=</span> <span class="n">x_values</span><span class="o">&gt;</span><span class="mi">7</span>
+
+<span class="c1">#plot the distribution</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x_values</span><span class="p">[</span><span class="n">win</span><span class="p">],</span><span class="n">dist</span><span class="p">[</span><span class="n">win</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Win $100&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x_values</span><span class="p">[</span><span class="n">lose</span><span class="p">],</span><span class="n">dist</span><span class="p">[</span><span class="n">lose</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Lose $100&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Probability&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="s1">&#39;15&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Number of Heads&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="s1">&#39;15&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># calculate expected value of the bet</span>
+<span class="n">expected_value</span> <span class="o">=</span> <span class="mi">100</span><span class="o">*</span><span class="nb">sum</span><span class="p">(</span><span class="n">dist</span><span class="p">[</span><span class="n">win</span><span class="p">])</span> <span class="o">-</span> <span class="mi">100</span><span class="o">*</span><span class="nb">sum</span><span class="p">(</span><span class="n">dist</span><span class="p">[</span><span class="n">lose</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Expected Value:&quot;</span><span class="p">,</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">expected_value</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span><span class="s2">&quot;dollars&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/7788885eedecf5607f0c9cb59350e9da03f5e5233874c39ac52d98199aa9cf15.png" src="_images/7788885eedecf5607f0c9cb59350e9da03f5e5233874c39ac52d98199aa9cf15.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Expected Value: -49.4 dollars
+</pre></div>
+</div>
+</div>
+</div>
+<p>Thus, we would could expect to lose an average of $49.40 every time we make the bet with the magician, given the prior observations of 42 heads in 50 tosses.</p>
 </section>
 </section>
 
@@ -438,7 +599,7 @@ game.</p>
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">1. </span>Analytic Bayesian Methods</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Analytic Bayesian Methods</p>
       </div>
     </a>
     <a class="right-next"
@@ -446,7 +607,7 @@ game.</p>
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">1.2. </span>Poisson with Gamma Prior</p>
+        <p class="prev-next-title"><span class="section-number">2.3. </span>Poisson with Gamma Prior</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -465,9 +626,12 @@ game.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motivating-example">1.1.1. Motivating Example</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parameterizing-the-situation">1.1.2. Parameterizing the Situation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intuition-of-the-beta-parameters">1.1.3. Intuition of the Beta parameters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motivating-example">2.2.1. Motivating Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#expected-value-of-a-fair-coin">2.2.2. Expected Value of A Fair Coin</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parameterizing-a-possibly-unfair-coin">2.2.3. Parameterizing a Possibly Unfair Coin</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intuition-of-the-beta-parameters">2.2.4. Intuition of the Beta Parameters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimating-the-bias-of-a-coin">2.2.5. Estimating the Bias of a Coin</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-the-expected-value-for-a-biased-coin">2.2.6. Calculating the Expected Value for a Biased Coin</a></li>
 </ul>
   </nav></div>
 
