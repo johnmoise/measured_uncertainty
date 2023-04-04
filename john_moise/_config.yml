@@ -5,32 +5,41 @@
 
 #######################################################################################
 # Book settings
-title: Extracurricular  # The title of the book. Will be placed in the left navbar.
-author: John Moïse  # The author of the book
-copyright: "2023"  # Copyright year to be placed in the footer
-only_build_toc_files: true
+title                   : Measured Uncertainty # The title of the book. Will be placed in the left navbar.
+author                  : John Moïse  # The author of the book
+copyright               : 2023  # Copyright year to be placed in the footer
+only_build_toc_files    : true
 
-# Force re-execution of notebooks on each build.
-# See https://jupyterbook.org/content/execute.html
-# execute:
-#   execute_notebooks: force
+#######################################################################################
+# Execution settings
+execute:
+  execute_notebooks     : auto
+  timeout               : 600
 
-# Define the name of the latex output file for PDF builds
+
+#######################################################################################
+# HTML settings
+html:
+  favicon               : "favicon.ico"
+  navbar_number_sections: true
+  home_page_in_navbar   : false
+  use_repository_button : true
+  use_edit_page_button  : false
+  use_issues_button     : false
+
+#######################################################################################
+# Repository settings
+repository:
+  url                   : https://github.com/johnmoise/research  # Online location of your book
+  branch                : main  
+
+#######################################################################################
+# Latex settings
 latex:
   latex_documents:
-    targetname: book.tex
+    targetname        : book.tex # Define the name of the latex output file for PDF builds
 
-# Add a bibtex file so that we can create citations
+#######################################################################################
+# Bibtex settings
 bibtex_bibfiles:
-  - references.bib
-
-# Add GitHub buttons to your book
-# See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
-html:
-  favicon: "favicon.ico"
-  use_edit_page_button: true
-
-# Information about where the book exists on the web
-repository:
-  url: https://github.com/johnmoise/research  # Online location of your book
-  branch: gh-pages  # Which branch of the repository should be used when creating links (optional)
+  - references.bib # Add a bibtex file so that we can create citations

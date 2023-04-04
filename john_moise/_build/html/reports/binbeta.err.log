@@ -1,0 +1,62 @@
+Traceback (most recent call last):
+  File "/Users/john/opt/anaconda3/lib/python3.9/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/Users/john/opt/anaconda3/lib/python3.9/site-packages/nbclient/client.py", line 1204, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/Users/john/opt/anaconda3/lib/python3.9/site-packages/nbclient/util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/Users/john/opt/anaconda3/lib/python3.9/site-packages/nbclient/util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+  File "/Users/john/opt/anaconda3/lib/python3.9/asyncio/base_events.py", line 647, in run_until_complete
+    return future.result()
+  File "/Users/john/opt/anaconda3/lib/python3.9/site-packages/nbclient/client.py", line 663, in async_execute
+    await self.async_execute_cell(
+  File "/Users/john/opt/anaconda3/lib/python3.9/site-packages/nbclient/client.py", line 965, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/Users/john/opt/anaconda3/lib/python3.9/site-packages/nbclient/client.py", line 862, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.stats import binom
+
+# set parameter values
+n = 10 # number of flips
+theta = 0.5 # probability of heads
+
+#define possible outcomes of heads
+x_values = np.arange(n+1)
+
+#calculate pmf values
+dist = np.array([binom.pmf(x,n,theta) for x in x_values])
+
+#create color masks
+win = x_values<=7
+lose = x_values>7
+
+#plot the distribution
+plt.bar(s_values[win],dist[win],color='green',label='Win $100')
+plt.bar(s_values[lose],dist[lose],color='red',label='Lose $100')
+plt.ylabel('Probability',fontsize='15')
+plt.xlabel('Number of Heads',fontsize='15')
+plt.legend()
+plt.show()
+
+# calculate expected value
+expected_value = 100*sum(dist[win]) - 100*sum(dist[lose])
+print("Expected Value:",f"${round(expected_value,2)}")
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mNameError[0m                                 Traceback (most recent call last)
+[0;32m/var/folders/fp/txtrdyy53t32f1msdpsjcpdc0000gq/T/ipykernel_82095/3816346436.py[0m in [0;36m<module>[0;34m[0m
+[1;32m     18[0m [0;34m[0m[0m
+[1;32m     19[0m [0;31m#plot the distribution[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 20[0;31m [0mplt[0m[0;34m.[0m[0mbar[0m[0;34m([0m[0ms_values[0m[0;34m[[0m[0mwin[0m[0;34m][0m[0;34m,[0m[0mdist[0m[0;34m[[0m[0mwin[0m[0;34m][0m[0;34m,[0m[0mcolor[0m[0;34m=[0m[0;34m'green'[0m[0;34m,[0m[0mlabel[0m[0;34m=[0m[0;34m'Win $100'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     21[0m [0mplt[0m[0;34m.[0m[0mbar[0m[0;34m([0m[0ms_values[0m[0;34m[[0m[0mlose[0m[0;34m][0m[0;34m,[0m[0mdist[0m[0;34m[[0m[0mlose[0m[0;34m][0m[0;34m,[0m[0mcolor[0m[0;34m=[0m[0;34m'red'[0m[0;34m,[0m[0mlabel[0m[0;34m=[0m[0;34m'Lose $100'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     22[0m [0mplt[0m[0;34m.[0m[0mylabel[0m[0;34m([0m[0;34m'Probability'[0m[0;34m,[0m[0mfontsize[0m[0;34m=[0m[0;34m'15'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mNameError[0m: name 's_values' is not defined
+NameError: name 's_values' is not defined
+

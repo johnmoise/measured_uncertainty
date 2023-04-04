@@ -1,0 +1,567 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>1.3. Poisson with Gamma Prior &#8212; Air of Uncertainty</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'poisson';</script>
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Appendix A: Definitions" href="definitions.html" />
+    <link rel="prev" title="1.2. Multinomial with Dirichlet Prior" href="multinomial.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="welcome.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">Air of Uncertainty</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Analytical Bayesian Methods</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="conjdist.html">1. Conjugate Distributions</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="binomial.html">1.1. Binomial with Beta Prior</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multinomial.html">1.2. Multinomial with Dirichlet Prior</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">1.3. Poisson with Gamma Prior</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="definitions.html">Appendix A: Definitions</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/johnmoise/research" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/poisson.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Poisson with Gamma Prior</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motivating-example">1.3.1. Motivating Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parameterizing-the-situation">1.3.2. Parameterizing the Situation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimating-the-expected-hourly-arrivals">1.3.3. Estimating the Expected Hourly Arrivals</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deriving-the-ppd">1.3.4. Deriving the PPD</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="poisson-with-gamma-prior">
+<h1><span class="section-number">1.3. </span>Poisson with Gamma Prior<a class="headerlink" href="#poisson-with-gamma-prior" title="Permalink to this heading">#</a></h1>
+<section id="motivating-example">
+<h2><span class="section-number">1.3.1. </span>Motivating Example<a class="headerlink" href="#motivating-example" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p>An administrator of the local hospital’s Emergency Department would like to model the probability of various numbers of patients arriving each hour between the hours midnight and 4am in order to better inform night shift staffing schedules. Specifically, the administrator wants to create a staffing schedule that will cover 99.9% of caseloads. Over the course of 2 weeks the administrator observed 224 admissions over the course of 56 clinic hours.</p>
+</section>
+<hr class="docutils" />
+<section id="parameterizing-the-situation">
+<h2><span class="section-number">1.3.2. </span>Parameterizing the Situation<a class="headerlink" href="#parameterizing-the-situation" title="Permalink to this heading">#</a></h2>
+<p>The distribution of interest is the posterior predictive distribution (PPD) as it will provide an estimate for the probability of each number patients present within the same hour, allowing for the creation of a staffing schedule that will cover a sufficient percent of caseloads.</p>
+<p>As we learned with the binomial-beta conjugate prior example, the PPD is the distribution of possible unobserved values <span class="math notranslate nohighlight">\(\tilde{x}\)</span> conditioned on the set of <span class="math notranslate nohighlight">\(n\)</span> previously observed values <span class="math notranslate nohighlight">\(\textbf{X}=\{x_1,...,x_n\}\)</span> which are drawn from a distribution that depends on parameter <span class="math notranslate nohighlight">\(\theta\in\Theta\)</span> where <span class="math notranslate nohighlight">\(\Theta\)</span> is the parameter space.</p>
+<p>The PPD is calculated by the marginalization of the distribution of <span class="math notranslate nohighlight">\(\tilde{x}\)</span> given <span class="math notranslate nohighlight">\(\theta\)</span> over the posterior distribution of <span class="math notranslate nohighlight">\(\theta\)</span> given <span class="math notranslate nohighlight">\(\textbf{X}\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[PPD\stackrel{\text{def}}{=} p(\tilde{x}|\textbf{X})=\int_{\Theta}p(\tilde{x}|\theta)p(\theta|\textbf{X})d\theta\]</div>
+<p>First, let us adapt the above notation to better represent the stated problem in the case of estimating ED arrivals.</p>
+<ul class="simple">
+<li><p>instead of <span class="math notranslate nohighlight">\(x\)</span>, we will use the variable <span class="math notranslate nohighlight">\(k\)</span> to emphasize that arrivals may only take discrete values</p></li>
+<li><p>instead of <span class="math notranslate nohighlight">\(\textbf{X}\)</span>, we will use <span class="math notranslate nohighlight">\(\textbf{K}\)</span> to represent the set of observed arrivals</p></li>
+<li><p>instead of <span class="math notranslate nohighlight">\(\theta\)</span>, we will use <span class="math notranslate nohighlight">\(\lambda\)</span> to represent the Poisson distribution parameter</p></li>
+</ul>
+<p>Thus, the PPD may be rewritten as</p>
+<div class="math notranslate nohighlight">
+\[PPD\stackrel{\text{def}}{=} p(\tilde{k}|\textbf{K})= \int_{\lambda}p(\tilde{k}|\lambda)p(\lambda|\textbf{K})d\lambda\]</div>
+<p>Since we are counting arrivals, the likelihood function <span class="math notranslate nohighlight">\(p(\tilde{k}|\lambda)\)</span> follows a Poisson distribution, as it models the probability of a given number of events occurring in a fixed interval of time.</p>
+<div class="math notranslate nohighlight">
+\[p(\tilde{k}|\lambda)\sim Poisson(\lambda)\]</div>
+<div class="math notranslate nohighlight">
+\[p(k|\lambda)=\frac{\lambda^{k}e^{-\lambda}}{k!}\]</div>
+<p>The conjugate prior <span class="math notranslate nohighlight">\(p(\lambda)\)</span> and conjugate posterior <span class="math notranslate nohighlight">\(p(\lambda|\textbf{K})\)</span> to a Poisson distributed likelihood are both Gamma distributed.</p>
+<div class="math notranslate nohighlight">
+\[p(\lambda)\sim Gamma(\alpha,\beta)\]</div>
+<div class="math notranslate nohighlight">
+\[p(\lambda|\textbf{K})\sim Gamma(\alpha+\sum_{i=1}^{n}k_i,\beta+n)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\lambda\)</span> is a positive real number that represents the Poisson distribution’s expected value and variance, while <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span> represent the Gamma distribution’s shape and rate parameters respectively.</p>
+</section>
+<section id="estimating-the-expected-hourly-arrivals">
+<h2><span class="section-number">1.3.3. </span>Estimating the Expected Hourly Arrivals<a class="headerlink" href="#estimating-the-expected-hourly-arrivals" title="Permalink to this heading">#</a></h2>
+<p>As stated above, the posterior distribution is Gamma distributed $<span class="math notranslate nohighlight">\(p(\lambda|\textbf{K})\sim Gamma(\alpha+\sum_{i=1}^{n}k_i,\beta+n)\)</span>$</p>
+<p>Let us generate some arrival data and model our uncertainty in <span class="math notranslate nohighlight">\(\lambda\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">gamma</span>
+
+<span class="c1"># set distribution parameters</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="mi">224</span>
+<span class="n">beta</span> <span class="o">=</span> <span class="mi">56</span>
+
+<span class="c1"># generate appropriate x-values for gamma distribution</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span> <span class="mi">101</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">gamma</span><span class="o">.</span><span class="n">logpdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">alpha</span><span class="p">,</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">beta</span><span class="p">)),</span><span class="s1">&#39;r-&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Gamma(</span><span class="si">{</span><span class="n">alpha</span><span class="si">}</span><span class="s1">,</span><span class="si">{</span><span class="n">beta</span><span class="si">}</span><span class="s1">) PDF&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/82fc0ea072a7485aed481813db243dcfbbc309c2279a1e00fdae1f244647bcae.png" src="_images/82fc0ea072a7485aed481813db243dcfbbc309c2279a1e00fdae1f244647bcae.png" />
+</div>
+</div>
+</section>
+<section id="deriving-the-ppd">
+<h2><span class="section-number">1.3.4. </span>Deriving the PPD<a class="headerlink" href="#deriving-the-ppd" title="Permalink to this heading">#</a></h2>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+p(\tilde{k}|\textbf{K}) &amp; = \int_{\lambda}p(\tilde{k}|\lambda)p(\lambda|\textbf{K})d\lambda \\
+&amp; = \int_0^{\infty}Poisson(\tilde{k}|\lambda)Gamma(\lambda|\alpha,\beta)d\lambda \\
+&amp; \text{substituting }\alpha=r \text{ and } \beta=\frac{p}{1-p} \text{ yields} \\
+&amp; = \int_0^{\infty}Poisson(\tilde{k}|\lambda)Gamma(\lambda|r,\frac{p}{1-p})d\lambda \\
+&amp; = \int_0^{\infty}\frac{\lambda^{k}e^{-\lambda}}{k!}\frac{1}{\Gamma(r)}\left(\frac{p}{1-p}\right)^r\lambda^{r-1}e^{-\lambda\frac{p}{1-p}} d\lambda \\
+&amp; = \frac{1}{k!\Gamma(r)}\left(\frac{p}{1-p}\right)^r\int_0^{\infty}\lambda^{r+k-1}e^{-\lambda\frac{p+1-p}{1-p}}d\lambda \\
+&amp; = \frac{1}{k!\Gamma(r)}\left(\frac{p}{1-p}\right)^r\Gamma(r+k)(1-p)^{k+r}\int_0^{\infty}Gamma(\lambda|k+r,\frac{1}{1-p})d\lambda \\
+&amp; = \frac{\Gamma(r+k)}{k!\Gamma(r)}(1-p)^{k}p^{r} \\
+&amp; = \text{NB}(k;r,p) \\
+\end{align}\end{split}\]</div>
+<p>where NB is the negative binomial distribution with parameters <span class="math notranslate nohighlight">\((r,p)\)</span> and support over <span class="math notranslate nohighlight">\(k\in\mathbb{N}_{0}\)</span>.</p>
+<p>The relationship of the PPD parameters <span class="math notranslate nohighlight">\(r\)</span> and <span class="math notranslate nohighlight">\(p\)</span> to the posterior distribution <span class="math notranslate nohighlight">\(p(\lambda|\textbf{K})\)</span> parameters <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span> are detailed below given <span class="math notranslate nohighlight">\(n\)</span> observations in <span class="math notranslate nohighlight">\(\textbf{K}=\{k_1,...,k_n\}\)</span> .</p>
+<div class="math notranslate nohighlight">
+\[r=\alpha+\sum_{i=1}^{n}k_i\]</div>
+<div class="math notranslate nohighlight">
+\[p=\frac{\beta+n}{1+\beta+n}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">nbinom</span>
+
+<span class="c1"># set parameters</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">alpha</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">beta</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">beta</span><span class="p">)</span>
+
+<span class="c1"># plot the pmf</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">13</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">nbinom</span><span class="o">.</span><span class="n">logpmf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">p</span><span class="p">)),</span><span class="s1">&#39;bo&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;NB(</span><span class="si">{</span><span class="n">r</span><span class="si">}</span><span class="s1">,</span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1">) PMF&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># calculate the 99.9 percentile</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;99.9th percentile of ED arrivals:&quot;</span><span class="p">,</span><span class="nb">round</span><span class="p">(</span><span class="n">nbinom</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">.999</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">p</span><span class="p">)),</span> <span class="s2">&quot;patients&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/bbb7cd9b8d22c9ca35b3e806a6ba6ba5d92a18330e05db30edb8ace6e9982e81.png" src="_images/bbb7cd9b8d22c9ca35b3e806a6ba6ba5d92a18330e05db30edb8ace6e9982e81.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>99.9th percentile of ED arrivals: 12 patients
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="multinomial.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">1.2. </span>Multinomial with Dirichlet Prior</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="definitions.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Appendix A: Definitions</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motivating-example">1.3.1. Motivating Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parameterizing-the-situation">1.3.2. Parameterizing the Situation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimating-the-expected-hourly-arrivals">1.3.3. Estimating the Expected Hourly Arrivals</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deriving-the-ppd">1.3.4. Deriving the PPD</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner">
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By John Moïse
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div></div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>1.2. Poisson with Gamma Prior &#8212; Extracurricular</title>
+    <title>2.3. Poisson with Gamma Prior &#8212; Extracurricular</title>
   
   
   
@@ -35,6 +35,7 @@
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
     <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -67,8 +68,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="2. Computational Bayesian Methods" href="cbm.html" />
-    <link rel="prev" title="1.1. Binomial with Beta Prior" href="binbeta.html" />
+    <link rel="next" title="3. Computational Bayesian Methods" href="cbm.html" />
+    <link rel="prev" title="2.2. Binomial with Beta Prior" href="binbeta.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -154,12 +155,13 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="abm.html">1. Analytic Bayesian Methods</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="binbeta.html">1.1. Binomial with Beta Prior</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">1.2. Poisson with Gamma Prior</a></li>
+<li class="toctree-l1"><a class="reference internal" href="foundations.html">1. Foundations of Bayesian Statistics</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="abm.html">2. Analytic Bayesian Methods</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="binbeta.html">2.2. Binomial with Beta Prior</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">2.3. Poisson with Gamma Prior</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="cbm.html">2. Computational Bayesian Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cbm.html">3. Computational Bayesian Methods</a></li>
 </ul>
 
     </div>
@@ -321,10 +323,10 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motivating-example">1.2.1. Motivating Example</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parameterizing-the-situation">1.2.2. Parameterizing the Situation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimating-the-expected-hourly-arrivals">1.2.3. Estimating the Expected Hourly Arrivals</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deriving-the-ppd">1.2.4. Deriving the PPD</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motivating-example">2.3.1. Motivating Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parameterizing-the-situation">2.3.2. Parameterizing the Situation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimating-the-expected-hourly-arrivals">2.3.3. Estimating the Expected Hourly Arrivals</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deriving-the-ppd">2.3.4. Deriving the PPD</a></li>
 </ul>
             </nav>
         </div>
@@ -337,15 +339,15 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="poisson-with-gamma-prior">
-<h1><span class="section-number">1.2. </span>Poisson with Gamma Prior<a class="headerlink" href="#poisson-with-gamma-prior" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">2.3. </span>Poisson with Gamma Prior<a class="headerlink" href="#poisson-with-gamma-prior" title="Permalink to this heading">#</a></h1>
 <section id="motivating-example">
-<h2><span class="section-number">1.2.1. </span>Motivating Example<a class="headerlink" href="#motivating-example" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">2.3.1. </span>Motivating Example<a class="headerlink" href="#motivating-example" title="Permalink to this heading">#</a></h2>
 <hr class="docutils" />
 <p>An administrator of the local hospital’s Emergency Department would like to model the probability of various numbers of patients arriving each hour between the hours midnight and 4am in order to better inform night shift staffing schedules. Specifically, the administrator wants to create a staffing schedule that will cover 99.9% of caseloads. Over the course of 2 weeks the administrator observed 224 admissions over the course of 56 clinic hours.</p>
 </section>
 <hr class="docutils" />
 <section id="parameterizing-the-situation">
-<h2><span class="section-number">1.2.2. </span>Parameterizing the Situation<a class="headerlink" href="#parameterizing-the-situation" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">2.3.2. </span>Parameterizing the Situation<a class="headerlink" href="#parameterizing-the-situation" title="Permalink to this heading">#</a></h2>
 <p>The distribution of interest is the posterior predictive distribution (PPD) as it will provide an estimate for the probability of each number patients present within the same hour, allowing for the creation of a staffing schedule that will cover a sufficient percent of caseloads.</p>
 <p>As we learned with the binomial-beta conjugate prior example, the PPD is the distribution of possible unobserved values <span class="math notranslate nohighlight">\(\tilde{x}\)</span> conditioned on the set of <span class="math notranslate nohighlight">\(n\)</span> previously observed values <span class="math notranslate nohighlight">\(\textbf{X}=\{x_1,...,x_n\}\)</span> which are drawn from a distribution that depends on parameter <span class="math notranslate nohighlight">\(\theta\in\Theta\)</span> where <span class="math notranslate nohighlight">\(\Theta\)</span> is the parameter space.</p>
 <p>The PPD is calculated by the marginalization of the distribution of <span class="math notranslate nohighlight">\(\tilde{x}\)</span> given <span class="math notranslate nohighlight">\(\theta\)</span> over the posterior distribution of <span class="math notranslate nohighlight">\(\theta\)</span> given <span class="math notranslate nohighlight">\(\textbf{X}\)</span>.</p>
@@ -373,7 +375,7 @@ document.write(`
 <p>where <span class="math notranslate nohighlight">\(\lambda\)</span> is a positive real number that represents the Poisson distribution’s expected value and variance, while <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span> represent the Gamma distribution’s shape and rate parameters respectively.</p>
 </section>
 <section id="estimating-the-expected-hourly-arrivals">
-<h2><span class="section-number">1.2.3. </span>Estimating the Expected Hourly Arrivals<a class="headerlink" href="#estimating-the-expected-hourly-arrivals" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">2.3.3. </span>Estimating the Expected Hourly Arrivals<a class="headerlink" href="#estimating-the-expected-hourly-arrivals" title="Permalink to this heading">#</a></h2>
 <p>As stated above, the posterior distribution is Gamma distributed $<span class="math notranslate nohighlight">\(p(\lambda|\textbf{K})\sim Gamma(\alpha+\sum_{i=1}^{n}k_i,\beta+n)\)</span>$</p>
 <p>Let us generate some arrival data and model our uncertainty in <span class="math notranslate nohighlight">\(\lambda\)</span>.</p>
 <div class="cell docutils container">
@@ -383,12 +385,12 @@ document.write(`
 <span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">gamma</span>
 
 <span class="c1"># set distribution parameters</span>
-<span class="n">a</span> <span class="o">=</span> <span class="mi">224</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="mi">224</span>
 <span class="n">beta</span> <span class="o">=</span> <span class="mi">56</span>
 
 <span class="c1"># generate appropriate x-values for gamma distribution</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span> <span class="mi">101</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">gamma</span><span class="o">.</span><span class="n">logpdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">beta</span><span class="p">)),</span><span class="s1">&#39;r-&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Gamma(224,56) PDF&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">gamma</span><span class="o">.</span><span class="n">logpdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">alpha</span><span class="p">,</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">beta</span><span class="p">)),</span><span class="s1">&#39;r-&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Gamma(</span><span class="si">{</span><span class="n">alpha</span><span class="si">}</span><span class="s1">,</span><span class="si">{</span><span class="n">beta</span><span class="si">}</span><span class="s1">) PDF&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -400,7 +402,7 @@ document.write(`
 </div>
 </section>
 <section id="deriving-the-ppd">
-<h2><span class="section-number">1.2.4. </span>Deriving the PPD<a class="headerlink" href="#deriving-the-ppd" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">2.3.4. </span>Deriving the PPD<a class="headerlink" href="#deriving-the-ppd" title="Permalink to this heading">#</a></h2>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{align}
 p(\tilde{k}|\textbf{K}) &amp; = \int_{\lambda}p(\tilde{k}|\lambda)p(\lambda|\textbf{K})d\lambda \\
@@ -435,15 +437,13 @@ p(\tilde{k}|\textbf{K}) &amp; = \int_{\lambda}p(\tilde{k}|\lambda)p(\lambda|\tex
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
 <span class="c1"># calculate the 99.9 percentile</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;percent under 12&quot;</span><span class="p">,</span><span class="n">nbinom</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">p</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;99.9 percentile:&quot;</span><span class="p">,</span><span class="n">nbinom</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">.999</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">p</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;99.9th percentile of ED arrivals:&quot;</span><span class="p">,</span><span class="nb">round</span><span class="p">(</span><span class="n">nbinom</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">.999</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">p</span><span class="p">)),</span> <span class="s2">&quot;patients&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <img alt="_images/bbb7cd9b8d22c9ca35b3e806a6ba6ba5d92a18330e05db30edb8ace6e9982e81.png" src="_images/bbb7cd9b8d22c9ca35b3e806a6ba6ba5d92a18330e05db30edb8ace6e9982e81.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>percent under 12 0.9989599705393701
-99.9 percentile: 12.0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>99.9th percentile of ED arrivals: 12 patients
 </pre></div>
 </div>
 </div>
@@ -485,7 +485,7 @@ p(\tilde{k}|\textbf{K}) &amp; = \int_{\lambda}p(\tilde{k}|\lambda)p(\lambda|\tex
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">1.1. </span>Binomial with Beta Prior</p>
+        <p class="prev-next-title"><span class="section-number">2.2. </span>Binomial with Beta Prior</p>
       </div>
     </a>
     <a class="right-next"
@@ -493,7 +493,7 @@ p(\tilde{k}|\textbf{K}) &amp; = \int_{\lambda}p(\tilde{k}|\lambda)p(\lambda|\tex
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">2. </span>Computational Bayesian Methods</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Computational Bayesian Methods</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -512,10 +512,10 @@ p(\tilde{k}|\textbf{K}) &amp; = \int_{\lambda}p(\tilde{k}|\lambda)p(\lambda|\tex
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motivating-example">1.2.1. Motivating Example</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parameterizing-the-situation">1.2.2. Parameterizing the Situation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimating-the-expected-hourly-arrivals">1.2.3. Estimating the Expected Hourly Arrivals</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deriving-the-ppd">1.2.4. Deriving the PPD</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motivating-example">2.3.1. Motivating Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parameterizing-the-situation">2.3.2. Parameterizing the Situation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimating-the-expected-hourly-arrivals">2.3.3. Estimating the Expected Hourly Arrivals</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deriving-the-ppd">2.3.4. Deriving the PPD</a></li>
 </ul>
   </nav></div>
 

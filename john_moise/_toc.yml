@@ -3,13 +3,15 @@
 
 format: jb-book
 root: welcome
-options:
+parts:
+- caption: Analytical Bayesian Methods
   numbered: true
-chapters:
-- file: abm.md
-  sections:
-  - file: binbeta.ipynb
-  - file: poigam.ipynb
-- file: cbm.md
-
-
+  chapters:
+  - file:  conjdist.ipynb
+    sections:
+      - file: binomial.ipynb
+      - file: multinomial.ipynb
+      - file: poisson.ipynb
+- caption: Appendices
+  chapters:
+  - file: definitions.ipynb
